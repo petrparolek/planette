@@ -10,7 +10,7 @@ author: "Honza Černý"
 
 Passing named service:
 
-```neon
+```yaml
 services:
     testdb: PDO('mysql:host=localhost;dbname=test', 'test','')   # named services
     - Article(@testdb)   # testdb is defined as service with name
@@ -18,7 +18,7 @@ services:
 
 Verbose style of service registration with assignment to **public** property `$db`:
 
-```neon
+```yaml
 services:
     -
         factory: App\Presenter\HomepagePresenter
@@ -33,7 +33,7 @@ services:
 
 Verbose style of factory registration:
 
-```neon
+```yaml
 services:
     -
         implement: ArticleFactory
@@ -43,21 +43,21 @@ services:
 
 You can skip defining parameters, which can be acquired by DI compiler via autowire mechanism:
 
-```neon
+```yaml
 services:
     - ArticleManager(..., ..., 123)   # first and second parameter will be autofilled, third is defined by us
 ```
 
 You can also call native PHP functions:
 
-```neon
+```yaml
 services:
     - AssetsCache( ::time() )   # return a value from time() function
 ```
 
 When you want to register service factory, but that factory should not be static:
 
-```neon
+```yaml
 services:
     - MyServiceFactory
     - @MyServiceFactory::create
@@ -65,7 +65,7 @@ services:
 
 Turning of the autowiring:
 
-```neon
+```yaml
 services:
     pdo: PDO('mysql:host=localhost;dbname=test', 'test','')
     - App\Model\UserManager

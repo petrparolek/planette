@@ -16,7 +16,7 @@ There may be a request to use custom looking urls in your project. Maybe it is a
 
 Make sure you have your router registered in DIC:
 
-```yml
+```yaml
 services:
     - App\RouterFactory
     router: @App\RouterFactory::createRouter

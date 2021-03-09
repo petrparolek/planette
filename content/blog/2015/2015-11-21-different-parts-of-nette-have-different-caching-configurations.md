@@ -16,7 +16,7 @@ Nette Framework enables to disable cache to many different parts of the framewor
 
 Let's tell Latte not to cache things:
 
-```yml
+```yaml
 services:
     nette.latteFactory:
         setup:
@@ -25,7 +25,7 @@ services:
 
 We may also add some custom macros:
 
-```yml
+```yaml
 latte:
     macros:
         - App\Utils\Macros
@@ -43,7 +43,7 @@ The thing is, we can affect only caching mechanism of `{cache}` macros, not the 
 
 `NDBT` requires from `DIC` `Nette\Caching\Istorage`, which is a good thing. We may simply put in `DIC` that `DevNullStorage` mentioned above:
 
-```yml
+```yaml
 services:
     cacheStorage:
         class: Nette\Caching\Storages\DevNullStorage

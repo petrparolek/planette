@@ -20,7 +20,7 @@ Than we need to link [Nette Ajax addon](http://addons.nette.org/cs/nette-ajax-js
 
 **Templates/@layout.latte**
 
-```html
+```latte
 {block scripts}
 <script src="{$basePath}/js/jquery.js"></script>
 <script src="{$basePath}/js/netteForms.js"></script>
@@ -79,7 +79,7 @@ To change value in template we need to use special property `$anyVariable`. If w
 
 **Homepage/default.latte**
 
-```html
+```latte
 <div id="content">
 	{snippet ajaxChange}
 		{$anyVariable}

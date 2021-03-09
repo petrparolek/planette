@@ -21,7 +21,7 @@ config.neon
 
 First we set up required parameters and register database service. Then we can add particular models as services.
 
-```neon
+```yaml
 parameters:
 	# parameters to connect to database
 	database:

@@ -135,7 +135,7 @@ Now we can run  `grunt` , but we got this error, because we don’t have blocks 
 
 So we add these block to our template. In @layout.latte file we find classic javascript and css including and wrap it to build blocks.
 
-```html
+```latte
 <!-- build:css {$basePath}/css/screen.min.css -->
 <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
 <!-- endbuild -->
@@ -146,7 +146,7 @@ So we add these block to our template. In @layout.latte file we find classic jav
 
 and
 
-```html
+```latte
 <!-- build:js {$basePath}/js/app.min.js -->
 <script src="{$basePath}/js/jquery.js"></script>
 <script src="{$basePath}/js/netteForms.js"></script>
@@ -224,7 +224,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 and update *@layout.latte*
 
-```html
+```latte
 {if $production}
 	<link rel="stylesheet" media="print" href="{$basePath}/css/screen.min.css?{$version}">
 	<link rel="stylesheet" media="print" href="{$basePath}/css/print.min.css?{$version}">
@@ -240,7 +240,7 @@ and update *@layout.latte*
 
 and
 
-```html
+```latte
 {if $production}
 	<script src="{$basePath}/js/app.min.js?{$version}"></script>
 {else}

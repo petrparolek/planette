@@ -10,7 +10,7 @@ author: "Armin Schmidtke"
 
 Curly braces `{}` are the default delimiters in Latte. If you don't want the curly braces interpreted as Latte tags (for example, in JavaScript), you need to type a space after `{`:
 
-```html
+```latte
 <div>
     { Hello }
 </div>
@@ -18,7 +18,7 @@ Curly braces `{}` are the default delimiters in Latte. If you don't want the cur
 
 Or you can use the Latte macros `{l}` and `{r}`:
 
-```html
+```latte
 <div>
     {l} Hello {r}
 </div>
@@ -26,7 +26,7 @@ Or you can use the Latte macros `{l}` and `{r}`:
 
 Or you can turn off the latte syntax for particular block:
 
-```html
+```latte
 <div n:syntax="off">
     {Hello}
 </div>

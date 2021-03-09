@@ -10,14 +10,14 @@ author: "Honza Černý"
 
 If you use exclamation mark after section name in `config.local.neon`, it will override the whole structure it may have inherited from `config.neon`.
 
-```neon
+```yaml
 # config.local.neon
 nette:
     session!:   # <-- there is the exclamation mark
         autoStart: yes
 ```
 
-```neon
+```yaml
 # config.neon
 nette:
     session:

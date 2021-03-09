@@ -26,7 +26,7 @@ $set->addMacro('id', NULL, NULL, 'if ($_l->tmp = array_filter(%node.array)) echo
 
 Use case in template:
 
-```html
+```latte
 <div n:id="TRUE ? success : error">Id success</div>
 <div n:id="FALSE ? success : error">Id error</div>
 ```
@@ -169,7 +169,7 @@ $set->addMacro("test3", "start", "end");
 
 **Template**
 
-```html
+```latte
 {test1 "parameter1"}Lorem lipsum..{/test1}
 
 <div n:test1="parameter1">Lorem lipsum..</div>

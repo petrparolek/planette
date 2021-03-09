@@ -10,7 +10,7 @@ author: "Honza Černý"
 
 `config.neon`
 
-```neon
+```yaml
 parameters:
     database:
         host: localhost
@@ -27,7 +27,7 @@ services:
 
 or with extension
 
-```neon
+```yaml
 # This will create service named 'dibi.connection'.
 # Requires Nette Framework 2.2
 

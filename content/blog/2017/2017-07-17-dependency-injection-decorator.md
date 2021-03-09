@@ -62,7 +62,7 @@ final class CategoryDataProvider extends AbsctractDataProvider implements IDataP
 
 Now that you have all data providers registered in config.neon:
 
-```yml
+```yaml
 services:
     - App\Presenters\UserDataProvider
     - App\Presenters\ProductDataProvider
@@ -71,7 +71,7 @@ services:
 
 you would normally have to set `$locale` parameter for yeach service separately. Or you can use a decorator:
 
-```yml
+```yaml
 decorator:
     App\Presenters\IDataProvider:
         setup:

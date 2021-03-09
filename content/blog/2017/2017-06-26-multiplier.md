@@ -39,7 +39,7 @@ protected function createComponentShopForm()
 
 We can now simply render separate form for every product in template. Each of the forms will be a unique component.
 
-```html
+```latte
 {foreach $items as $item}
 	<h2>{$item->title}</h2>
 	{$item->description}

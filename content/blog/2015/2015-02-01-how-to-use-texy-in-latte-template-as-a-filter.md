@@ -10,7 +10,7 @@ author: "Honza Černý"
 
 Install Texy via composer and register it as a service in `config.neon`.
 
-```neon
+```yaml
 services
     - Texy
 ```

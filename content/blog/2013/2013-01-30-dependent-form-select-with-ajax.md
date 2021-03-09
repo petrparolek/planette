@@ -98,7 +98,7 @@ class HomepagePresenter extends BasePresenter
 
 **Homepage/default.latte**
 
-```html
+```latte
 {define #content}
 
 {form selectForm}
@@ -244,7 +244,7 @@ class HomepagePresenter extends BasePresenter
 
 To keep ajax alive for all snippets, we have to place it into last changing one (in this case into `{snippet secondSnippet}`).
 
-```html
+```latte
 {define #content}
 
 {form selectForm}

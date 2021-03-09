@@ -10,7 +10,7 @@ author: "Honza Černý"
 
 Register it in `config.neon`
 
-```neon
+```yaml
 - SeoFactory
 ```
 

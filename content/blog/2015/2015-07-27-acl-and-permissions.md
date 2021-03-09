@@ -102,7 +102,7 @@ What have we done in this step:
 
 Cool, we have a Permission object, what now? Let's tell Nette that it can use a `authorizator`:
 
-```yml
+```yaml
 services:
     ...
     - App\Security\AuthorizatorFactory
