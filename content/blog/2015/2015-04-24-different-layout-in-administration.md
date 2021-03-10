@@ -33,39 +33,39 @@ Handful for simple and small administration.
 
 1. `templates/Admin/default.latte`
 
-    ```latte
-    <!-- use adminLayout.latte -->
-    {layout "../@layoutAdmin.latte"}
-    ```
+```latte
+<!-- use adminLayout.latte -->
+{layout "../@layoutAdmin.latte"}
+```
 
 2. or we can modify structure like this:
 
-    ```latte
-    <b>templates/
-        Admin/
-            default.latte
-            @layout.latte
-        Homepage/</b>
-            ...
-        <b>@layout.latte</b>
-    ```
+```latte
+<b>templates/
+    Admin/
+        default.latte
+        @layout.latte
+    Homepage/</b>
+        ...
+    <b>@layout.latte</b>
+```
 
-    and template `Admin/@layout.latte` will load for `AdminPresenter.php` automatically. See [automatic layout loader][doc-presenters-templates]
+and template `Admin/@layout.latte` will load for `AdminPresenter.php` automatically. See [automatic layout loader][doc-presenters-templates]
 
 3. or `AdminBasePresenter`
 
-    We still have `@layoutAdmin.latte` as in variant **1**
+We still have `@layoutAdmin.latte` as in variant **1**
 
-    ```php
-    abstract class AdminBasePresenter extends BasePresenter
+```php
+abstract class AdminBasePresenter extends BasePresenter
+{
+    protected function beforeRender()
     {
-        protected function beforeRender()
-        {
-            parent::beforeRender();
-            $this->setLayout('layoutAdmin');
-        }
+        parent::beforeRender();
+        $this->setLayout('layoutAdmin');
     }
-    ```
+}
+```
 
 ## Modules – Front & Admin
 

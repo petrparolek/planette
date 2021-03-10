@@ -16,66 +16,66 @@ Let's say you have many classes of one type:
 ```php
 interface IDataProvider
 {
-    public function setLocale(string $locale): void;
+	public function setLocale(string $locale): void;
 
-    public function getData(): array;
+	public function getData(): array;
 }
 
 
 abstract class AbsctractDataProvider
 {
-    protected $locale;
+	protected $locale;
 
-    public function setLocale(string $locale): void
-    {
-        $this->locale = $locale;
-    }
+	public function setLocale(string $locale): void
+	{
+		$this->locale = $locale;
+	}
 }
 
 
 final class UserDataProvider extends AbsctractDataProvider implements IDataProvider
 {
-    public function getData(): array
-    {
-        return [];
-    }
+	public function getData(): array
+	{
+		return [];
+	}
 }
 
 
 final class ProductDataProvider extends AbsctractDataProvider implements IDataProvider
 {
-    public function getData(): array
-    {
-        return [];
-    }
+	public function getData(): array
+	{
+		return [];
+	}
 }
 
 
 final class CategoryDataProvider extends AbsctractDataProvider implements IDataProvider
 {
-    public function getData(): array
-    {
-        return [];
-    }
+	public function getData(): array
+	{
+		return [];
+	}
 }
 ```
 
 Now that you have all data providers registered in config.neon:
 
-```yaml
+```neon
 services:
-    - App\Presenters\UserDataProvider
-    - App\Presenters\ProductDataProvider
-    - App\Presenters\CategoryDataProvider
+	- App\Presenters\UserDataProvider
+	- App\Presenters\ProductDataProvider
+	- App\Presenters\CategoryDataProvider
 ```
 
 you would normally have to set `$locale` parameter for yeach service separately. Or you can use a decorator:
 
-```yaml
+```neon
 decorator:
-    App\Presenters\IDataProvider:
-        setup:
-            - setLocale('cs')
+	App\Presenters\IDataProvider:
+		setup:
+			- setLocale('cs')
 ```
 
 All registered services implementing IDataProvider will now have a $locale parameter set. :)

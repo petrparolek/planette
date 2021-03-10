@@ -12,7 +12,6 @@ This short tutorial will show you, how to create and register custom macros.
 
 Built on **Nette 2.0.8**.
 
-
 ## Create macro
 
 First, we create macroSet and add all our macros. How to register macros to template will be shown later.
@@ -48,7 +47,7 @@ This should seem more clear now:
 ```php
 $set->addMacro('id', NULL, NULL,
   'if ($_l->tmp = array_filter(%node.array))
-     echo \' id="\' . %escape(implode(" ", array_unique($_l->tmp))) . \'"\'
+	 echo \' id="\' . %escape(implode(" ", array_unique($_l->tmp))) . \'"\'
 ');
 ```
 
@@ -56,7 +55,6 @@ We can use special aliases like `%node.word`, `%node.array`, `%node.args`, `%esc
 
 For better understanding, you can check some examples in Nette:
 [CacheMacro](https://api.nette.org/2.0/source-Latte.Macros.CacheMacro.php.html#19), [CoreMacros](https://api.nette.org/2.0/source-Latte.Macros.CoreMacros.php.html#22) a [FormMacros](https://api.nette.org/2.0/source-Latte.Macros.FormMacros.php.html#24)
-
 
 ### `$attr` as callback
 
@@ -74,11 +72,9 @@ $set->addMacro('id', NULL, NULL, array($this, 'macroId'));
  */
 public function macroId(MacroNode $node, PhpWriter $writer)
 {
-    return $writer->write('if ($_l->tmp = array_filter(%node.array)) echo \' id="\' . %escape(implode(" ", array_unique($_l->tmp))) . \'"\'');
+	return $writer->write('if ($_l->tmp = array_filter(%node.array)) echo \' id="\' . %escape(implode(" ", array_unique($_l->tmp))) . \'"\'');
 }
-
 ```
-
 
 
 ## Registration
@@ -96,43 +92,42 @@ use Latte\PhpWriter;
 class CustomMacros extends Latte\Macros\MacroSet
 {
 
-    public static function install(Latte\Compiler $compiler)
-    {
-        $set = new static($compiler);
-        $set->addMacro('id', NULL, NULL, array($set, 'macroId'));
-    }
+	public static function install(Latte\Compiler $compiler)
+	{
+		$set = new static($compiler);
+		$set->addMacro('id', NULL, NULL, array($set, 'macroId'));
+	}
 
 
-    /**
-     * n:id="..."
-     */
-    public function macroId(MacroNode $node, PhpWriter $writer)
-    {
-        return $writer->write('if ($_l->tmp = array_filter(%node.array)) echo \' id="\' . %escape(implode(" ", array_unique($_l->tmp))) . \'"\'');
-    }
+	/**
+	 * n:id="..."
+	 */
+	public function macroId(MacroNode $node, PhpWriter $writer)
+	{
+		return $writer->write('if ($_l->tmp = array_filter(%node.array)) echo \' id="\' . %escape(implode(" ", array_unique($_l->tmp))) . \'"\'');
+	}
 
 }
 ```
 
 Then we add our class to latte compilation in `config.neon`
 
-```yaml
+```neon
 factories:
-    nette.latte:
-        class: Latte\Engine
-        setup:
-            - CustomMacros::install(::$service->getCompiler())
-```yaml
+	nette.latte:
+		class: Latte\Engine
+		setup:
+			- CustomMacros::install(::$service->getCompiler())
+```
 
 Since **Nette 2.1-dev** there exists special section for macros:
 
-```yaml
+```neon
 nette:
-    latte:
-        macros:
-            - CustomMacros::install
+	latte:
+		macros:
+			- CustomMacros::install
 ```
-
 
 ## Classic macro vs. n:macro
 

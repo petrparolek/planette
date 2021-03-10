@@ -18,7 +18,6 @@ Logic is very simle: when first select is changed a `handle*` method is called b
 
 If you don't know, what *snippet* or *Nette Ajax* is, I recommend you to check [Quickstart](doc:ajax).
 
-
 **HomepagePresenter.php**
 
 ```php
@@ -56,9 +55,7 @@ class HomepagePresenter extends BasePresenter
 		$this->invalidateControl('secondSnippet');
 	}
 
-
 	/********************** form **********************/
-
 
 	protected function createComponentSelectForm()
 	{
@@ -119,13 +116,13 @@ class HomepagePresenter extends BasePresenter
 {define #jsCallback}
 
 $('#{$control["selectForm"][$input]->htmlId}').on('change', function() {
-	$.nette.ajax({
-		type: 'GET',
-		url: '{link {$link}!}',
-		data: {
-			'value': $(this).val(),
-		}
-	});
+    $.nette.ajax({
+        type: 'GET',
+        url: '{link {$link}!}',
+        data: {
+            'value': $(this).val(),
+        }
+    });
 });
 
 {/define}

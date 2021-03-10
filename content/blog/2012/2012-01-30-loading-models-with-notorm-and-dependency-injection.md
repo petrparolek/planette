@@ -12,7 +12,6 @@ Since [Nette 2.0.5](https://forum.nette.org/en/1074-nette-framework-2-0-5-releas
 
 This tutorial uses **Nette 2.0.5** a **NotORM**. Are you looking for [dibi or Nette Database ](pla:cs:nette-database-vs-dibi) (in Czech)?
 
-
 Configuring environment
 ===
 
@@ -21,7 +20,7 @@ config.neon
 
 First we set up required parameters and register database service. Then we can add particular models as services.
 
-```yaml
+```neon
 parameters:
 	# parameters to connect to database
 	database:
@@ -54,7 +53,6 @@ Models
 
 To preserve KISS approach and not to repeat same code in all models, we have to create abstract parent class. We define basic methods and database connection in it.
 
-
 BaseModel.php
 ---
 
@@ -82,7 +80,6 @@ abstract class Base extends Nette\Object
 		$this->db = $notorm;
 		$this->tableName = $this->tableNameByClass(get_class($this));
 	}
-
 
 	/**
 	 * Determine table by class name
@@ -127,6 +124,7 @@ class User extends Base
 	{
 		return $this->db->user("name", $name)->fetch();
 	}
+
 }
 ```
 
@@ -175,15 +173,14 @@ class ArticlePresenter extends BasePresenter
 		$this->articleModel = $articleModel;
 	}
 
-
 	/**
 	 * @param int
 	 */
-        public function actionDetail($id)
-        {
+	public function actionDetail($id)
+	{
 		$this->template->article = $article = $this->articleModel->fetch($id)
 		$this->template->articleAuthor = $this->userModel->fetch($article["user_id"]);
-        }
+    }
 
 }
 ```

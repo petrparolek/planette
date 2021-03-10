@@ -12,7 +12,6 @@ If you want to edit a record, you have to pass its id to save function. You can 
 
 Most important is fact, that **permissions to edit the record have to be check both in the action and the signal**. Record submit is signal as well (accessible by url).
 
-
 ```php
 use Nette\Application\UI\Form;
 use Nette\Application\BadRequestException;
@@ -81,8 +80,6 @@ Next step could be creating [separate function](  cs:vychozi-data-pro-editacni-f
 In other word one form for multiple actions.
 
 ```php
-
-
 /**
  * Form to manage record
  */

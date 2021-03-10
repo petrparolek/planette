@@ -51,6 +51,7 @@ Register callback processing the form during initialization.
 
 Use in presenter
 ---
+
 ```php
 class LoginPresenter extends \Nette\Application\UI\Presenter
 {

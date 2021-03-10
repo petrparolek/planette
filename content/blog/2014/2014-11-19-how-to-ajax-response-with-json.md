@@ -29,6 +29,6 @@ or just redraw component
 
 ```php
 if ($this->isAjax()){
-     $this->redrawControl('datalist');
+	$this->redrawControl('datalist');
 }
 ```

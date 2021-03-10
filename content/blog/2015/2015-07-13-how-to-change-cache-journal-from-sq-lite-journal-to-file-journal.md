@@ -14,8 +14,8 @@ Just to remind, the journal is used to store some metadata about cache records (
 
 Sometimes we might however want to use the original `FileJournal` (for example in case our hosting doesn't support the SQLite). We achieve that by overwriting service `cache.journal` in our `config.neon`.
 
-```yaml
+```neon
 services:
-    cache.journal:
-        factory: Nette\Caching\Storages\FileJournal(%tempDir%)
+	cache.journal:
+		factory: Nette\Caching\Storages\FileJournal(%tempDir%)
 ```

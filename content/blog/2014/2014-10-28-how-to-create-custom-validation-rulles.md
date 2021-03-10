@@ -12,9 +12,7 @@ Constants (DOMAIN, USER_IN_DOMAIN) contain name of static function, that call fo
 
 Example "user in domain", show us, how work with parameters. 
 
-
 ```php
-
 class DomainsRules
 {
 	const DOMAIN = 'DomainsRules::validateDomain';
@@ -31,17 +29,14 @@ class DomainsRules
 		// dump($control->getValue());
 		// return TRUE or FALSE
 	}
+
 }
 ```
 
-
 ```php
-
 $form->addText('domain', 'Domain:')
-			->addRule(DomainsRules::DOMAIN, 'fill domain in format domain.tld');
-
+	->addRule(DomainsRules::DOMAIN, 'fill domain in format domain.tld');
 
 $form->addText('user', 'User:')
-			->addRule(DomainsRules::USER_IN_DOMAIN, 'user is not in domain nette.org', 'nette.org');
-
+	->addRule(DomainsRules::USER_IN_DOMAIN, 'user is not in domain nette.org', 'nette.org');
 ```

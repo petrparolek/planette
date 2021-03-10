@@ -10,9 +10,9 @@ author: "Honza Černý"
 
 Install Texy via composer and register it as a service in `config.neon`.
 
-```yaml
+```neon
 services
-    - Texy
+	- Texy
 ```
 
 Register Texy as a Latte filter in presenter
@@ -24,11 +24,11 @@ Register Texy as a Latte filter in presenter
 public $texy;
 
 protected function createTemplate($class = NULL) {
-    $template = parent::createTemplate($class);
-    // $template->addFilter('texy', callback($this->texy, 'process')); // old php
-    $template->addFilter('texy', array($this->texy, 'process'));
+	$template = parent::createTemplate($class);
+	// $template->addFilter('texy', callback($this->texy, 'process')); // old php
+	$template->addFilter('texy', array($this->texy, 'process'));
 
-    return $template;
+	return $template;
 }
 ```
 

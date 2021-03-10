@@ -24,8 +24,8 @@ use Nette\Utils\Html;
 
 $contries = array(
     102 => Html::el()->setText('Czech republic')->data('lon', '-8.000000')->data('lat', '53.412910')->data('zoom', '6'),
-     77 => Html::el()->setText('Slovakia')->data('lon', '-1.768799')->data('lat', '53.094024')->data('zoom', '5'),
-)
+    77 => Html::el()->setText('Slovakia')->data('lon', '-1.768799')->data('lat', '53.094024')->data('zoom', '5'),
+);
 
 $form->addSelect('country', 'Country:', $countries);
 ```

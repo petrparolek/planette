@@ -10,17 +10,17 @@ author: "Honza Černý"
 
 With DI extension in `config.neon`
 
-```yaml
+```neon
 nette:
-    security:
-        users:
-            john: p4ss
-            admin: P4S5w0rD@!
+	security:
+		users:
+			john: p4ss
+			admin: P4S5w0rD@!
 ```
 
 is the same as long version without using DI extension in `config.neon`
 
-```yaml
+```neon
 services:
-    - Nette\Security\SimpleAuthenticator({john:p4ss, admin: 'P4S5w0rD@!'})
+	- Nette\Security\SimpleAuthenticator({john:p4ss, admin: 'P4S5w0rD@!'})
 ```

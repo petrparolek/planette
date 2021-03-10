@@ -11,8 +11,8 @@ author: "Honza Černý"
 ```php
 class ProductPresenter extends Presenter
 {
-    /** @persistent */
-    public $lang;
+	/** @persistent */
+	public $lang;
 
-    // ...
+	// ...
 ```

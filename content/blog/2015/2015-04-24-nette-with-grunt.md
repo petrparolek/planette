@@ -169,7 +169,7 @@ How can we do this? I use configuration in neon.config where I define what versi
 
 *config.neon*
 
-```yaml
+```neon
 #
 # SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
 #
@@ -242,13 +242,13 @@ and
 
 ```latte
 {if $production}
-	<script src="{$basePath}/js/app.min.js?{$version}"></script>
+    <script src="{$basePath}/js/app.min.js?{$version}"></script>
 {else}
-	<!-- build:js {$basePath}/js/app.min.js -->
-	<script src="{$basePath}/js/jquery.js"></script>
-	<script src="{$basePath}/js/netteForms.js"></script>
-	<script src="{$basePath}/js/main.js"></script>
-	<!-- endbuild -->
+    <!-- build:js {$basePath}/js/app.min.js -->
+    <script src="{$basePath}/js/jquery.js"></script>
+    <script src="{$basePath}/js/netteForms.js"></script>
+    <script src="{$basePath}/js/main.js"></script>
+    <!-- endbuild -->
 {/if}
 ```
 

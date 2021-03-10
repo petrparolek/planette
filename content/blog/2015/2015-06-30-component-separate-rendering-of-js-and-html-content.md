@@ -27,38 +27,38 @@ use Nette\ComponentModel\IContainer;
  */
 class TestComponents extends Control {
 
-    /**
-     * @param IContainer $parent
-     * @param string $name
-     */
-    final function __construct(IContainer $parent = NULL, $name = NULL) {
-        parent::__construct($parent, $name);
-    }
+	/**
+	 * @param IContainer $parent
+	 * @param string $name
+	 */
+	final function __construct(IContainer $parent = NULL, $name = NULL) {
+		parent::__construct($parent, $name);
+	}
 
-    /**
-     * @see Nette\Application\Control#render()
-     * @return void
-     */
-    public function render() {
-        $this->renderJS();
-        $this->renderHTML();
-    }
+	/**
+	 * @see Nette\Application\Control#render()
+	 * @return void
+	 */
+	public function render() {
+		$this->renderJS();
+		$this->renderHTML();
+	}
 
-    /**
-     * @return void
-     */
-    public function renderJS() {
-        $this->template->setFile(dirname(__FILE__) . '/js.latte');
-        $this->template->render();
-    }
+	/**
+	 * @return void
+	 */
+	public function renderJS() {
+		$this->template->setFile(dirname(__FILE__) . '/js.latte');
+		$this->template->render();
+	}
 
-    /**
-     * @return void
-     */
-    public function renderHTML() {
-        $this->template->setFile(dirname(__FILE__) . '/template.latte');
-        $this->template->render();
-    }
+	/**
+	 * @return void
+	 */
+	public function renderHTML() {
+		$this->template->setFile(dirname(__FILE__) . '/template.latte');
+		$this->template->render();
+	}
 
 }
 ```

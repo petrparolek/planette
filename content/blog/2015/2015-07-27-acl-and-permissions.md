@@ -22,13 +22,13 @@ use Nette\Application\UI\Presenter;
 class HomepagePresenter extends Presenter
 {
 
-    public function actionDefault(): void
-    {
-        dump($this->user->isLoggedIn()); // false
-        dump($this->user->isInRole('admin')); // false
+	public function actionDefault(): void
+	{
+		dump($this->user->isLoggedIn()); // false
+		dump($this->user->isInRole('admin')); // false
 
-        die;
-    }
+		die;
+	}
 }
 ```
 
@@ -47,42 +47,41 @@ use Nette\Security\Permission;
 class AuthorizatorFactory
 {
 
-    private const ROLE_GUEST = 'guest';
-    private const ROLE_CLIENT = 'client';
+	private const ROLE_GUEST = 'guest';
+	private const ROLE_CLIENT = 'client';
 
 
-    public function create(): Permission
-    {
-        $acl = new Permission;
+	public function create(): Permission
+	{
+		$acl = new Permission;
 
-        /**
-         * Roles 1*
-         */
-        $acl->addRole(self::ROLE_GUEST);
-        $acl->addRole(self::ROLE_CLIENT, self::ROLE_GUEST); // 2*
+		/**
+		 * Roles 1*
+		 */
+		$acl->addRole(self::ROLE_GUEST);
+		$acl->addRole(self::ROLE_CLIENT, self::ROLE_GUEST); // 2*
 
-        /**
-         * Resoures 3*
-         */
-        $acl->addResource('Front');
-        $acl->addResource('Front:Homepage', 'Front');
-        $acl->addResource('Front:About', 'Front');
+		/**
+		 * Resoures 3*
+		 */
+		$acl->addResource('Front');
+		$acl->addResource('Front:Homepage', 'Front');
+		$acl->addResource('Front:About', 'Front');
 
-        $acl->addResource('Client');
-        $acl->addResource('Client:Sign', 'Client');
-        $acl->addResource('Client:Profile', 'Client');
+		$acl->addResource('Client');
+		$acl->addResource('Client:Sign', 'Client');
+		$acl->addResource('Client:Profile', 'Client');
 
+		/**
+		 * Permissions 4*
+		 */
+		$acl->allow(self::ROLE_GUEST, 'Front');
+		$acl->allow(self::ROLE_GUEST, 'Client:Sign');
 
-        /**
-         * Permissions 4*
-         */
-        $acl->allow(self::ROLE_GUEST, 'Front');
-        $acl->allow(self::ROLE_GUEST, 'Client:Sign');
+		$acl->allow(self::ROLE_CLIENT,  Permission::ALL, Permission::ALL);
 
-        $acl->allow(self::ROLE_CLIENT,  Permission::ALL, Permission::ALL);
-
-        return $acl;
-    }
+		return $acl;
+	}
 
 }
 ```
@@ -102,13 +101,13 @@ What have we done in this step:
 
 Cool, we have a Permission object, what now? Let's tell Nette that it can use a `authorizator`:
 
-```yaml
+```neon
 services:
-    ...
-    - App\Security\AuthorizatorFactory
-    -
-        class: Nette\Security\Permission
-        factory: @App\Security\AuthorizatorFactory::create
+	#...
+	- App\Security\AuthorizatorFactory
+	-
+		class: Nette\Security\Permission
+		factory: @App\Security\AuthorizatorFactory::create
 ```
 
 By default, Nette looks into `DIC` and tries to find a service implementing `Nette\Security\IAuthorizator`. The `Nette\Security\Permission` class implements that interface and we have registered this class into `DIC` so it will be automatically passed to an object of type `Nette\Security\User` available in each `Presenter` class.
@@ -125,14 +124,14 @@ use Nette\Application\UI\Presenter;
 class HomepagePresenter extends Presenter
 {
 
-    public function actionDefault()
-    {
-        dump($this->user->isAllowed('Front:Homepage')); // => true
-        dump($this->user->isAllowed('Client'));           // => false
-        dump($this->user->isAllowed('Client:Sign'));      // => true
+	public function actionDefault()
+	{
+		dump($this->user->isAllowed('Front:Homepage')); // => true
+		dump($this->user->isAllowed('Client'));		   // => false
+		dump($this->user->isAllowed('Client:Sign'));	  // => true
 
-        die;
-    }
+		die;
+	}
 
 }
 ```
@@ -231,65 +230,65 @@ use Nette\Utils\ArrayHash;
 class SignPresenter extends AbstractPresenter
 {
 
-    /**
-     * @persistent
-     */
-    public $backlink = '';
+	/**
+	 * @persistent
+	 */
+	public $backlink = '';
 
 
-    public function actionIn()
-    {
-        if ($this->user->isLoggedIn()) {
-            $this->redirect('Profile:');
-        }
-    }
+	public function actionIn()
+	{
+		if ($this->user->isLoggedIn()) {
+			$this->redirect('Profile:');
+		}
+	}
 
 
-    public function actionOut()
-    {
-        $this->user->logout();
-        $this->flashMessage('You were signed out');
-        $this->redirect('in');
-    }
+	public function actionOut()
+	{
+		$this->user->logout();
+		$this->flashMessage('You were signed out');
+		$this->redirect('in');
+	}
 
 
-    public function createComponentSignInForm()
-    {
-        $form = new Form;
+	public function createComponentSignInForm()
+	{
+		$form = new Form;
 
-        $form->addText('username', 'Username:');
-        $form->addPassword('password', 'Password:');
-        $form->addSubmit('submit', 'Submit');
+		$form->addText('username', 'Username:');
+		$form->addPassword('password', 'Password:');
+		$form->addSubmit('submit', 'Submit');
 
-        $form->onValidate[] = [$this, 'validateCreditians'];
-        $form->onSuccess[] = [$this, 'signInFormSucceeded'];
+		$form->onValidate[] = [$this, 'validateCreditians'];
+		$form->onSuccess[] = [$this, 'signInFormSucceeded'];
 
-        return $form;
-    }
-
-
-    public function validateCreditians(Form $form, ArrayHash $values)
-    {
-        if ($values->username !== 'franta' || $values->password !== 'heslo') {
-            $form->addError('Invalid credentials');
-        }
-    }
+		return $form;
+	}
 
 
-    public function signInFormSucceeded(Form $form, ArrayHash $values)
-    {
-        $identity = new Identity(1, AuthorizatorFactory::ROLE_USER, [
-            'username' => $values->username
-        ]);
+	public function validateCreditians(Form $form, ArrayHash $values)
+	{
+		if ($values->username !== 'franta' || $values->password !== 'heslo') {
+			$form->addError('Invalid credentials');
+		}
+	}
 
-        $this->user->login($identity);
 
-        if ($this->backlink) {
-            $this->restoreRequest($this->backlink);
-        }
+	public function signInFormSucceeded(Form $form, ArrayHash $values)
+	{
+		$identity = new Identity(1, AuthorizatorFactory::ROLE_USER, [
+			'username' => $values->username
+		]);
 
-        $this->redirect('Homepage:');
-    }
+		$this->user->login($identity);
+
+		if ($this->backlink) {
+			$this->restoreRequest($this->backlink);
+		}
+
+		$this->redirect('Homepage:');
+	}
 
 }
 ```
@@ -316,34 +315,34 @@ use Nette\Reflection;
 class AbstractPresenter extends Presenter
 {
 
-        /**
-         * Check authorization
-         * @return void
-         */
-        public function checkRequirements($element)
-        {
-            if ($element instanceof Reflection\Method) {
-                /**
-                 * Check permissions for Action/handle methods
-                 *
-                 *  - Do not that (rely on presenter authorization)
-                 */
-                return;
-            } else {
-                /**
-                 * Check permissions for presenter access
-                 */
-                $resource = $element->getAnnotation('resource'); // 1*
-            }
+	/**
+	 * Check authorization
+	 * @return void
+	 */
+	public function checkRequirements($element)
+	{
+		if ($element instanceof Reflection\Method) {
+			/**
+			 * Check permissions for Action/handle methods
+			 *
+			 *  - Do not that (rely on presenter authorization)
+			 */
+			return;
+		} else {
+			/**
+			 * Check permissions for presenter access
+			 */
+			$resource = $element->getAnnotation('resource'); // 1*
+		}
 
-            if (!$this->user->isAllowed($resource)) { // 2*
-                if (!$this->user->isLoggedIn()) {
-                    $this->redirect('Sign:in', ['backlink' => $this->storeRequest()]);
-                } else {
-                    throw new ForbiddenRequestException;
-                }
-            }
-        }
+		if (!$this->user->isAllowed($resource)) { // 2*
+			if (!$this->user->isLoggedIn()) {
+				$this->redirect('Sign:in', ['backlink' => $this->storeRequest()]);
+			} else {
+				throw new ForbiddenRequestException;
+			}
+		}
+	}
 
 }
 ```

@@ -10,8 +10,6 @@ author: "Honza Černý"
 
 ```php
 Assert::exception(function () {
-    $this->userManager->addUser('user','P455w0rd');
+	$this->userManager->addUser('user','P455w0rd');
 }, 'DuplicateEntryException');
-
---/
 ```

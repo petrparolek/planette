@@ -16,18 +16,16 @@ There may be a request to use custom looking urls in your project. Maybe it is a
 
 Make sure you have your router registered in DIC:
 
-```yaml
+```neon
 services:
-    - App\RouterFactory
-    router: @App\RouterFactory::createRouter
+	- App\RouterFactory
+	router: @App\RouterFactory::createRouter
 ```
 
 Now, how should your `App\RouterFactory` class look like?
 
 ```php
-<?php
-
-delcare(strict_types=1);
+<?php delcare(strict_types=1);
 
 namespace App;
 
@@ -38,65 +36,65 @@ use Nette\Application\IRouter;
 class RouterFactory
 {
 
-    private $urls = [
-        'en/category/another-category/super-tuper-hello-kitty-mug' => [
-            'presenter' => 'Products',
-            'action' => 'detail',
-            'id' => '1010',
-            'lang' => 'en',
-        ],
-        'en/hello-kitty-pen' => [
-            'presenter' => 'Products',
-            'action' => 'detail',
-            'id' => '1234',
-            'lang' => 'en',
-        ],
-        'es/kitty-pen-in-spanish' => [
-            'presenter' => 'Products',
-            'action' => 'detail',
-            'id' => '1234',
-            'lang' => 'es',
-        ],
-    ];
+	private $urls = [
+		'en/category/another-category/super-tuper-hello-kitty-mug' => [
+			'presenter' => 'Products',
+			'action' => 'detail',
+			'id' => '1010',
+			'lang' => 'en',
+		],
+		'en/hello-kitty-pen' => [
+			'presenter' => 'Products',
+			'action' => 'detail',
+			'id' => '1234',
+			'lang' => 'en',
+		],
+		'es/kitty-pen-in-spanish' => [
+			'presenter' => 'Products',
+			'action' => 'detail',
+			'id' => '1234',
+			'lang' => 'es',
+		],
+	];
 
 
-    public function createRouter(): IRouter
-    {
-        $router = new RouteList;
+	public function createRouter(): IRouter
+	{
+		$router = new RouteList;
 
-        $router[] = new Route('[<url [a-z-0-9\/]+?>]', [
-            null => [
-                Route::FILTER_IN => [$this, 'urlIn'],
-                Route::FILTER_OUT => [$this, 'urlOut']
-            ]
-        ]);
+		$router[] = new Route('[<url [a-z-0-9\/]+?>]', [
+			null => [
+				Route::FILTER_IN => [$this, 'urlIn'],
+				Route::FILTER_OUT => [$this, 'urlOut']
+			]
+		]);
 
-        return $router;
-    }
-
-
-    public function urlIn(array $params): ?array
-    {
-        $url = trim($params['url'], '/');
-
-        if (isset($this->urls[$url])) {
-            return $this->urls[$url];
-        }
-
-        return null;
-    }
+		return $router;
+	}
 
 
-    public function urlOut(array $params): ?array
-    {
-        foreach ($this->urls as $url => $url_params) {
-            if ($params == $url_params) {
-                return ['url' => $url];
-            }
-        }
+	public function urlIn(array $params): ?array
+	{
+		$url = trim($params['url'], '/');
 
-        return null;
-    }
+		if (isset($this->urls[$url])) {
+			return $this->urls[$url];
+		}
+
+		return null;
+	}
+
+
+	public function urlOut(array $params): ?array
+	{
+		foreach ($this->urls as $url => $url_params) {
+			if ($params == $url_params) {
+				return ['url' => $url];
+			}
+		}
+
+		return null;
+	}
 }
 ```
 

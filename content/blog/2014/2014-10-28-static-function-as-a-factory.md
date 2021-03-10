@@ -27,7 +27,7 @@ class PdoFactory
 
 And register it in your `config.neon`:
 
-```yaml
+```neon
 services:
 	- PdoFactory::create('mysql:host=localhost;dbname=test')
 ```

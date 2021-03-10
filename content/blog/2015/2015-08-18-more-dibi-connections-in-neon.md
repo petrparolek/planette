@@ -8,7 +8,7 @@ slug: "more-dibi-connections-in-neon"
 author: "Miroslav Hůla"
 ---
 
-```yaml
+```neon
 parameters:
 	databases:
 		one:
@@ -24,19 +24,19 @@ extensions:
 	dibi.two: Dibi\Bridges\Nette\DibiExtension22
 
 dibi.one:
-    driver: postgre
-    port: 5433
-    database: xxxxx
-    username: %databases.one.username%
-    password: %databases.one.password%
+	driver: postgre
+	port: 5433
+	database: xxxxx
+	username: %databases.one.username%
+	password: %databases.one.password%
 
 dibi.two:
-    autowired: no  # note this parameter
-    driver: oracle
-    database: "(DESCRIPTION = (...))"
-    username: %databases.two.username%
-    password: %databases.two.password%
-    charset: UTF8
+	autowired: no  # note this parameter
+	driver: oracle
+	database: "(DESCRIPTION = (...))"
+	username: %databases.two.username%
+	password: %databases.two.password%
+	charset: UTF8
 
 services:
 	- App\Model\DataOne  # does not need specify connection, the 'one' is autowired

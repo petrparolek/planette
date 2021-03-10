@@ -24,9 +24,9 @@ $form->addTextArea('text', 'Text')
 
 ```js
 tinyMCE.init({
-	mode: "specific_textareas",
-	editor_selector: "mceEditor",
-	...
+    mode: "specific_textareas",
+    editor_selector: "mceEditor",
+    //...
 });
 ```
 
@@ -39,9 +39,9 @@ $form->addTextArea('text', 'Text')
 
 ```js
 tinyMCE.init({
-	mode: "exact",
-	elements: "mceEditor",
-	...
+    mode: "exact",
+    elements: "mceEditor",
+    //...
 });
 ```
 
@@ -55,7 +55,6 @@ If a form contains only one button (or if all buttons runs validation) you can a
 ```php
 $form->getElementPrototype()->onsubmit('tinyMCE.triggerSave()');
 ```
-
 
 ```comment
 Following is not tested, but hypothetically should work.

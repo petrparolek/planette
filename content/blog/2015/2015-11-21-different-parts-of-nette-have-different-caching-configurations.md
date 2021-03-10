@@ -16,19 +16,19 @@ Nette Framework enables to disable cache to many different parts of the framewor
 
 Let's tell Latte not to cache things:
 
-```yaml
+```neon
 services:
-    nette.latteFactory:
-        setup:
-            - setTempDirectory(NULL)
+	nette.latteFactory:
+		setup:
+			- setTempDirectory(NULL)
 ```
 
 We may also add some custom macros:
 
-```yaml
+```neon
 latte:
-    macros:
-        - App\Utils\Macros
+	macros:
+		- App\Utils\Macros
 ```
 
 This works, our macro is doing what it is supposed to do. But! When we change the namescpace (e.g. we move the macro to our super cool vendor `Super\Cool\Macros`), Tracy will show us warning that `Class App\Utils\Macros not found`. Hm. :(
@@ -43,10 +43,10 @@ The thing is, we can affect only caching mechanism of `{cache}` macros, not the 
 
 `NDBT` requires from `DIC` `Nette\Caching\Istorage`, which is a good thing. We may simply put in `DIC` that `DevNullStorage` mentioned above:
 
-```yaml
+```neon
 services:
-    cacheStorage:
-        class: Nette\Caching\Storages\DevNullStorage
+	cacheStorage:
+		class: Nette\Caching\Storages\DevNullStorage
 ```
 
 Great - solved.
@@ -60,7 +60,7 @@ Great - solved.
 
 Nette\Loaders\RobotLoader::setCacheStorage(new Nette\Caching\Storages\DevNullStorage).
 
-# ...
+//...
 ```
 
 ## Application cache

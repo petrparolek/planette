@@ -10,7 +10,7 @@ author: "Honza Černý"
 
 Register it in `config.neon`
 
-```yaml
+```neon
 - SeoFactory
 ```
 
@@ -19,13 +19,13 @@ Create interface with one public method `create` with annotation (or return type
 ```php
 interface SeoFactory
 {
-    /** @return SEO */
-    public function create();
+	/** @return SEO */
+	public function create();
 }
 
 class SEO
 {
-    // ...
+	// ...
 }
 ```
 

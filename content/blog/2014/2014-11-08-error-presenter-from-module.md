@@ -10,8 +10,8 @@ author: "Honza Černý"
 
 Here is how you change the default error presenter to one you have in module `Front`. The key is using a colon, just as you would when defining routes.
 
-```yaml
+```neon
 nette:
-    application:
-        errorPresenter: "Front:Error"
+	application:
+		errorPresenter: "Front:Error"
 ```

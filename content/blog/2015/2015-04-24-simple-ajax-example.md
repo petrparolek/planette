@@ -81,11 +81,11 @@ To change value in template we need to use special property `$anyVariable`. If w
 
 ```latte
 <div id="content">
-	{snippet ajaxChange}
-		{$anyVariable}
-	{/snippet}
+    {snippet ajaxChange}
+        {$anyVariable}
+    {/snippet}
 
-	<a n:href="changeVariable!" class="ajax">Change variable!</a>
+    <a n:href="changeVariable!" class="ajax">Change variable!</a>
 </div>
 ```
 

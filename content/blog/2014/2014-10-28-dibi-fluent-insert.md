@@ -12,5 +12,5 @@ don't forget for execute
 
 ```php
 $dibi->insert('table', $values)
-    ->execute(\Dibi::IDENTIFIER);
+	->execute(\Dibi::IDENTIFIER);
 ```

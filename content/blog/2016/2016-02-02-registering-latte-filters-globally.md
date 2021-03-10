@@ -12,14 +12,16 @@ In this article, I would like to expand the [idea](https://play.nette.org/post/1
 
 Only thing you have to do is simly register a latte fitler class in config.neon file and then adding just one method to this class each time you want to add different filter:
 
-```yaml
+```neon
 services:
-    latte.latteFactory:
-        setup:
-            - addFilter(null, [App\Filters, loader])
+	latte.latteFactory:
+		setup:
+			- addFilter(null, [App\Filters, loader])
 ```
 
 ```php
+<?php
+
 namespace App;
 
 class Filters

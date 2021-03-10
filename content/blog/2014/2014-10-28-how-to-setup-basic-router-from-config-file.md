@@ -10,8 +10,8 @@ author: "Honza Černý"
 
 `config.neon`
 
-```yaml
+```neon
 routing:
-    routes:
-        <presenter>/<action>: Homepage:default
+	routes:
+		<presenter>/<action>: Homepage:default
 ```

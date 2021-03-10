@@ -18,11 +18,11 @@ In development mode, Latte is checking `filemtime` of each template file in each
 
 In the production mode, it would slow the application down, hence the templates are once cached and when you make some changes to the template, the change is not applied to the result. But maybe you need to check the changes in production mode:
 
-```yaml
+```neon
 services:
-    nette.latteFactory:
-        setup:
-            - setAutoRefresh(TRUE)
+	nette.latteFactory:
+		setup:
+			- setAutoRefresh(TRUE)
 ```
 
 But **keep in mind** that from this time on, Latte will check each file in each request...

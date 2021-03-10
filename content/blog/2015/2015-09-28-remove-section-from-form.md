@@ -34,19 +34,18 @@ And this is array_pick:
  */
 function array_pick(& $arr, $key, $default = NULL)
 {
-    if (array_key_exists($key, $arr)) {
-        $value = $arr[$key];
-        unset($arr[$key]);
-        return $value;
+	if (array_key_exists($key, $arr)) {
+		$value = $arr[$key];
+		unset($arr[$key]);
+		return $value;
 
-    } else {
-        if (func_num_args() < 3) {
-            throw new Nette\InvalidArgumentException("Missing item '$key'.");
-        }
-        return $default;
-    }
+	} else {
+		if (func_num_args() < 3) {
+			throw new Nette\InvalidArgumentException("Missing item '$key'.");
+		}
+		return $default;
+	}
 }
 ```
-
 
 from foxycode [September 17, 2015 3:00 AM](https://gitter.im/nette/nette?at=55fa10c318e0111d7e4f408b)

@@ -11,7 +11,7 @@ author: "Jiří Zralý"
 If you need to connect to different database in different repositories. Follows Nette Sandbox configuration.
 
 config.neon
-```yaml
+```neon
 
 database:
 	db1:

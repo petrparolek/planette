@@ -12,12 +12,12 @@ use `,` as a class separator
 
 ```latte
 <header n:class="position-default, homepage, $query ? position-top">
-    <h1>Nette Code Snippets</h1>
+	<h1>Nette Code Snippets</h1>
 </header>
 
 {* is same as: *}
 
 <header class="position-default homepage{if $query!=''} position-top{/if}">
-    <h1>Nette Code Snippets</h1>
+	<h1>Nette Code Snippets</h1>
 </header>
 ```
